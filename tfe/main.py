@@ -67,7 +67,7 @@ def _generate_prototypes(args):
 
     generator.generate_prototypes(output_dirpath, args.space_filepath,
                                   args.fillers_filepath, args.num_fillers,
-                                  args.needed_words_filepath)
+                                  args.needed_words)
 
 def main():
     """Launch thematic-fit-estimation."""
@@ -105,7 +105,7 @@ def main():
         'generate-prototypes', formatter_class=argparse.RawTextHelpFormatter,
         help='creates prototype vectors')
     parser_generate_prototypes.add_argument(
-        '-o', '--output', required=True, help='absolute path to output '
+        '-o', '--output', help='absolute path to output '
         'directory. If not set, will default to space directory')
     parser_generate_prototypes.add_argument(
         '-s', '--space-filepath', required=True, help='absolute path to DSM. '
@@ -114,9 +114,10 @@ def main():
         '-f', '--fillers-filepath', required=True, help='absolute path to DSM. '
         'It must be either in npz or npy format.')
     parser_generate_prototypes.add_argument(
-        '-n', '--num-fillers', required=True, help='number of considered fillers')
+        '-n', '--num-fillers', required=True, type=int,
+        help='number of considered fillers')
     parser_generate_prototypes.add_argument(
-        '-n', '--needed-words', required=True, help='absolute path to needed '
+        '-w', '--needed-words', required=True, help='absolute path to needed '
         'words file. If not set, the whole space will be saved to npz format.')
     parser_generate_prototypes.set_defaults(func=_generate_prototypes)
 

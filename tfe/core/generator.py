@@ -139,10 +139,16 @@ def _generate_prototypes_sparse(output_dirpath, space_filepath,
                                 fillers_filepath, fillers_number,
                                 needed_words_filepath):
 
+    output_prototypes_filepath = \
+        futils.get_prototype_filepath(output_dirpath, space_filepath,
+                                      fillers_filepath, fillers_number)
+    output_prototypes_vocab_filepath = \
+        futils.get_prototype_vocab_filepath(output_dirpath, space_filepath,
+                                            fillers_filepath, fillers_number)
+
     needed_words = dutils.load_wordlist(needed_words_filepath)
     model = dutils.load_sparse_model(space_filepath)
     model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, "row")
-    model_vocabulary_cols = dutils.load_model_vocabulary(space_filepath, "col")
 
     prototypes = []
     if fillers_filepath.endswith('.plain.txt'):
@@ -150,7 +156,6 @@ def _generate_prototypes_sparse(output_dirpath, space_filepath,
 
     if fillers_filepath.endswith('.deps.txt'):
         fillers = _load_deps(fillers_filepath, needed_words)
-
     word_to_idx = {}
     last_idx = 0
     for target in fillers:
@@ -181,6 +186,13 @@ def _generate_prototypes_sparse(output_dirpath, space_filepath,
 def _generate_prototypes_dense(output_dirpath, space_filepath,
                                fillers_filepath, fillers_number,
                                needed_words_filepath):
+    output_prototypes_filepath = \
+        futils.get_prototype_filepath(output_dirpath, space_filepath,
+                                      fillers_filepath, fillers_number)
+    output_prototypes_vocab_filepath = \
+        futils.get_prototype_vocab_filepath(output_dirpath, space_filepath,
+                                            fillers_filepath, fillers_number)
+
     needed_words = dutils.load_wordlist(needed_words_filepath)
     model = dutils.load_dense_model(space_filepath)
     model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, "row")
@@ -196,6 +208,7 @@ def _generate_prototypes_dense(output_dirpath, space_filepath,
     last_idx = 0
     for target in fillers:
         for rel in fillers[target]:
+            print(fillers[target][rel])
             temporary_centroid = np.zeros(model.shape[1])
             skipped_fillers = 0
             considered_fillers = fillers[target][rel][:fillers_number]
