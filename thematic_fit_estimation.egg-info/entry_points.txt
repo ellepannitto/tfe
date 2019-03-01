@@ -1,0 +1,3 @@
+[console_scripts]
+tfe = tfe.main:main
+

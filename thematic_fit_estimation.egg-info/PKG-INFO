@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: thematic-fit-estimation
+Version: 0.1.0
+Summary: Estimation of thematic fit performances
+Home-page: UNKNOWN
+Author: Ludovica Pannitto
+Author-email: ludovica.pannitto@unitn.it
+License: MIT
+Description: # entropix
+        Entropy, Zipf's law and distributional semantics.
+        
+        ## Use
+        
+        ### Generate
+        To generate the count matrix from a tokenized corpus, do:
+        ```
+        entropix count \
+          --corpus abs_corpus_filepath \
+          --min-count frequency_threshold \
+          --win-size window_size \
+          --output abs_output_dirpath \
+        ```
+        
+        If the `--output` parameter is not set, the output files will be saved to the corpus directory.
+        
+        For example, running:
+        ```
+        entropix count \
+          -c /home/USER/corpus.txt \
+          -m 50 \
+          -w 2 \
+          -o /home/USER/output_counts/ \
+        ```
+        will produce:
+        * `/home/USER/output_counts/corpus.mincount-50.win-2.npz` -> serialized sparse csr matrix
+        * `/home/USER/output_counts/corpus.mincount-50.win-2.vocab` -> word-to-index mappings to interpret the matrix dimensions
+        
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
