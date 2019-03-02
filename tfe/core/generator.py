@@ -95,7 +95,6 @@ def generate_npz_spaces(output_dirpath, spaces_dirpath, needed_words_filepath):
     if needed_words_filepath:
         needed_words = dutils.load_wordlist(needed_words_filepath)
     for fname in os.listdir(spaces_dirpath):
-        print(fname)
         logger.info('processing file {}'.format(fname))
         if fname.endswith('sparse.gz'):
             _from_sparse(output_dirpath, os.path.join(spaces_dirpath, fname),
@@ -127,7 +126,10 @@ def _load_plain(fname, needed_words):
         for line in input_stream:
             target, filler, score = line.strip().split()
             if target in needed_words:
-                fillersdict[target]["all"].append((filler, float(score)))
+                fillersdict[target]["sbj"].append((filler, float(score)))
+                fillersdict[target]["obj"].append((filler, float(score)))
+                fillersdict[target]["loc"].append((filler, float(score)))
+                fillersdict[target]["with"].append((filler, float(score)))
     for target in fillersdict:
         for rel in fillersdict[target]:
             fillersdict[target][rel] = \
@@ -148,7 +150,7 @@ def _generate_prototypes_sparse(output_dirpath, space_filepath,
 
     needed_words = dutils.load_wordlist(needed_words_filepath)
     model = dutils.load_sparse_model(space_filepath)
-    model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, "row")
+    model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, ".row")
 
     prototypes = []
     if fillers_filepath.endswith('.plain.txt'):
@@ -195,7 +197,7 @@ def _generate_prototypes_dense(output_dirpath, space_filepath,
 
     needed_words = dutils.load_wordlist(needed_words_filepath)
     model = dutils.load_dense_model(space_filepath)
-    model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, "row")
+    model_vocabulary_rows = dutils.load_model_vocabulary(space_filepath, ".row")
 
     prototypes = []
     if fillers_filepath.endswith('.plain.txt'):
@@ -208,7 +210,6 @@ def _generate_prototypes_dense(output_dirpath, space_filepath,
     last_idx = 0
     for target in fillers:
         for rel in fillers[target]:
-            print(fillers[target][rel])
             temporary_centroid = np.zeros(model.shape[1])
             skipped_fillers = 0
             considered_fillers = fillers[target][rel][:fillers_number]
@@ -235,6 +236,7 @@ def _generate_prototypes_dense(output_dirpath, space_filepath,
 
 def generate_prototypes(output_dirpath, space_filepath, fillers_filepath,
                         fillers_number, needed_words_filepath):
+
     if space_filepath.endswith('.npz'):
         _generate_prototypes_sparse(output_dirpath, space_filepath,
                                     fillers_filepath, fillers_number,

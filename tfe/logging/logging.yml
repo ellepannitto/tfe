@@ -9,12 +9,12 @@ handlers:
     class: logging.StreamHandler
     formatter: simple
 loggers:
-  thematic-fit-estimation.core:
+  tfe.core:
     level: INFO
     handlers: [console]
-  thematic-fit-estimation.main:
+  tfe.main:
     level: INFO
     handlers: [console]
-  thematic-fit-estimation.utils:
+  tfe.utils:
     level: INFO
     handlers: [console]
