@@ -28,8 +28,9 @@ def extract_needed_words(output_dirpath, datasets_dirpath, fillers_dirpath):
 
         with open(os.path.join(fillers_dirpath, fname), encoding='utf-8') as input_stream:
             for line in input_stream:
-                linesplit = line.split('\t')
+                linesplit = line.strip().split()
                 if linesplit[0] in dataset_words:
+                    needed_words.add(linesplit[0])
                     if idx == 1:
                         needed_words.add(linesplit[idx].strip())
                     elif linesplit[idx] in ['sbj', 'obj', 'loc', 'with']:

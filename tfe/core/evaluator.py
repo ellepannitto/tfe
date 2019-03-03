@@ -13,6 +13,9 @@ __all__ = ('evaluate')
 
 def _evaluate_sparse(output_dirpath, dataset_filepath, prototype_filepath,
                      model_filepath):
+    output_filepath = futils.get_evalutation_output(output_dirpath,
+                                                    dataset_filepath,
+                                                    prototype_filepath)
 
     model = dutils.load_sparse_model(model_filepath)
     model_vocabulary_rows = dutils.load_model_vocabulary(model_filepath, '.row')
@@ -26,7 +29,7 @@ def _evaluate_sparse(output_dirpath, dataset_filepath, prototype_filepath,
         for rel, filler, score in dataset[target]:
             proto_row = target+'/'+rel
             if filler in model_vocabulary_rows:
-                if proto_row in model_vocabulary_rows:
+                if proto_row in prototypes_vocabulary:
                     filler_v = model.getrow(model_vocabulary_rows[filler]).todense()
                     cosine_score = 1-cosine(filler_v, prototypes[prototypes_vocabulary[proto_row], :])
 
@@ -40,9 +43,15 @@ def _evaluate_sparse(output_dirpath, dataset_filepath, prototype_filepath,
 
     logger.info('Correlation: {}'.format(correlation))
 
+    with open(output_filepath, 'w') as output_stream:
+        print('Correlation: {}'.format(correlation), file=output_stream)
 
 def _evaluate_dense(output_dirpath, dataset_filepath, prototype_filepath,
                     model_filepath):
+
+    output_filepath = futils.get_evalutation_output(output_dirpath,
+                                                    dataset_filepath,
+                                                    prototype_filepath)
 
     model = dutils.load_dense_model(model_filepath)
     model_vocabulary_rows = dutils.load_model_vocabulary(model_filepath, '.row')
@@ -50,14 +59,15 @@ def _evaluate_dense(output_dirpath, dataset_filepath, prototype_filepath,
     prototypes = dutils.load_dense_model(prototype_filepath)
     prototypes_vocabulary = dutils.load_model_vocabulary(prototype_filepath, '')
 
+
     true_scores = []
     predict_scores = []
     for target in dataset:
         for rel, filler, score in dataset[target]:
             proto_row = target+'/'+rel
             if filler in model_vocabulary_rows:
-                if proto_row in model_vocabulary_rows:
-                    filler_v = model[prototypes_vocabulary[filler], :]
+                if proto_row in prototypes_vocabulary:
+                    filler_v = model[model_vocabulary_rows[filler], :]
                     cosine_score = 1-cosine(filler_v, prototypes[prototypes_vocabulary[proto_row], :])
 
                     true_scores.append(score)
@@ -69,6 +79,9 @@ def _evaluate_dense(output_dirpath, dataset_filepath, prototype_filepath,
     correlation = stats.spearmanr(true_scores, predict_scores)[0]
 
     logger.info('Correlation: {}'.format(correlation))
+
+    with open(output_filepath, 'w') as output_stream:
+        print('Correlation: {}'.format(correlation), file=output_stream)
 
 
 def evaluate(output_dirpath, dataset_filepath, prototype_filepath,

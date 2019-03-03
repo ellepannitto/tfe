@@ -55,3 +55,9 @@ def get_prototype_vocab_filepath(output_dirpath, space_filepath, fillers_filepat
     out_filepath = os.path.join(output_dirpath, s)
 
     return out_filepath
+
+def get_evalutation_output(output_dirpath, dataset_filepath, prototype_filepath):
+    dataset_basename = os.path.basename(dataset_filepath).strip('.txt')
+    prototype_basename = os.path.basename(prototype_filepath).strip('prototypes').strip('.npy')
+
+    return os.path.join(output_dirpath, 'results.{}.{}.txt'.format(dataset_basename, prototype_basename))
