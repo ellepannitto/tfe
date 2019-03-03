@@ -6,7 +6,7 @@ Methods used to manipulate YAML-based configuration files.
 import logging
 import yaml
 
-from entropix.utils.immutables import ImmutableConfig
+from tfe.utils.immutables import ImmutableConfig
 
 __all__ = ('load')
 

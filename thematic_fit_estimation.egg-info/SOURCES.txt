@@ -3,13 +3,16 @@ setup.py
 tfe/__init__.py
 tfe/main.py
 tfe/core/__init__.py
+tfe/core/evaluator.py
 tfe/core/extractor.py
+tfe/core/generator.py
 tfe/exceptions/__init__.py
 tfe/exceptions/method.py
 tfe/exceptions/parameter.py
 tfe/logging/__init__.py
 tfe/utils/__init__.py
 tfe/utils/config.py
+tfe/utils/data.py
 tfe/utils/files.py
 tfe/utils/immutables.py
 thematic_fit_estimation.egg-info/PKG-INFO

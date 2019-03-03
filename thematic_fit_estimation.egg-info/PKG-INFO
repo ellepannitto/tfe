@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 1.1
 Name: thematic-fit-estimation
 Version: 0.1.0
 Summary: Estimation of thematic fit performances
@@ -6,34 +6,39 @@ Home-page: UNKNOWN
 Author: Ludovica Pannitto
 Author-email: ludovica.pannitto@unitn.it
 License: MIT
-Description: # entropix
-        Entropy, Zipf's law and distributional semantics.
+Description: ## Step 1 - generate list of needed words:
         
-        ## Use
+        This step generates a file called 'needed_words' that contains all the targets
+        and fillers in the datasets and in the fillers lists.
+        This file will be used to load just the needed rows of the distributional space
+        afterwards.
         
-        ### Generate
-        To generate the count matrix from a tokenized corpus, do:
-        ```
-        entropix count \
-          --corpus abs_corpus_filepath \
-          --min-count frequency_threshold \
-          --win-size window_size \
-          --output abs_output_dirpath \
-        ```
+        In order to do so, exec the extract-needed-words command
         
-        If the `--output` parameter is not set, the output files will be saved to the corpus directory.
         
-        For example, running:
-        ```
-        entropix count \
-          -c /home/USER/corpus.txt \
-          -m 50 \
-          -w 2 \
-          -o /home/USER/output_counts/ \
-        ```
-        will produce:
-        * `/home/USER/output_counts/corpus.mincount-50.win-2.npz` -> serialized sparse csr matrix
-        * `/home/USER/output_counts/corpus.mincount-50.win-2.vocab` -> word-to-index mappings to interpret the matrix dimensions
+        ## Step 2 - save spaces into numpy/scipy format:
+        
+        This step produces .npz or .npy matrices from raw text spaces.
+        In order to do so, exec the generate-npz-space command
+        
+        Note: raw spaces should be in gzipped format, and:
+        * sparse spaces should have extension .sparse.gz
+        * dense spaces should have extension .dense.gz
+        
+        
+        ## Step 3 - generate prototypes:
+        
+        This step produces a npy matrix containing prototypes, given a filler file and
+        a distributional space.
+        
+        Note: files containing fillers should have one of the following extensions:
+        * .plain.txt if the fillers are not typed
+        * .deps.txt if the fillers are typed
+        
+        ## Step 4 - evaluate correlation:
+        
+        This step evaluates a correlation score given a dataset, a matrix containing
+        prototypes and a distributional space.
         
 Platform: any
 Classifier: Development Status :: 2 - Pre-Alpha
@@ -48,4 +53,3 @@ Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
-Description-Content-Type: text/markdown

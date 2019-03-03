@@ -6,7 +6,7 @@ This file details modalities for packaging the thematic-fit-estimation package.
 
 from setuptools import setup
 
-with open('README.md', 'r', encoding='utf-8') as fh:
+with open('README.md', 'r',) as fh:
     long_description = fh.read()
 
 setup(
@@ -31,7 +31,7 @@ setup(
             'tfe = tfe.main:main'
         ],
     },
-    install_requires=['pyyaml>=4.2b1'],
+    install_requires=['pyyaml>=4.2b1','numpy','scipy>=0.19'],
     classifiers=['Development Status :: 2 - Pre-Alpha',
                  'Environment :: Web Environment',
                  'Intended Audience :: Developers',

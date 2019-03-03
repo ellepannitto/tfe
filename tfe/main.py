@@ -49,7 +49,7 @@ def _generate_npz_spaces(args):
 
     needed_words_filepath = None
     if args.needed_words:
-        needed_words_filepath = args.needed_words_filepath
+        needed_words_filepath = args.needed_words
 
     generator.generate_npz_spaces(output_dirpath, args.spaces_dirpath,
                                   needed_words_filepath)

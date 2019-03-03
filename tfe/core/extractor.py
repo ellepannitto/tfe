@@ -30,7 +30,10 @@ def extract_needed_words(output_dirpath, datasets_dirpath, fillers_dirpath):
             for line in input_stream:
                 linesplit = line.split('\t')
                 if linesplit[0] in dataset_words:
-                    needed_words.add(linesplit[idx].strip())
+                    if idx == 1:
+                        needed_words.add(linesplit[idx].strip())
+                    elif linesplit[idx] in ['sbj', 'obj', 'loc', 'with']:
+                        needed_words.add(linesplit[idx].strip())
 
     with open(output_filepath, 'w', encoding='utf-8') as output_stream:
         print('\n'.join(needed_words), file=output_stream)
