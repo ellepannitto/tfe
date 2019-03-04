@@ -2,7 +2,7 @@
 
 
 ## Install
-Under the tfe directory:
+Under the ```tfe``` directory:
 ```
 python3 setup.py install
 ```
