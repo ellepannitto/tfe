@@ -1,4 +1,4 @@
-Metadata-Version: 1.1
+Metadata-Version: 1.0
 Name: thematic-fit-estimation
 Version: 0.1.0
 Summary: Estimation of thematic fit performances
@@ -6,7 +6,16 @@ Home-page: UNKNOWN
 Author: UNKNOWN
 Author-email: UNKNOWN
 License: MIT
-Description: ## Step 1 - generate list of needed words:
+Description: # ```tfe```: Thematic Fit Estimation utility
+        
+        
+        ## Install
+        Under the tfe directory:
+        ```
+        python3 setup.py develop
+        ```
+        
+        ## Step 1 - generate list of needed words:
         
         This step generates a file called ```needed_words.txt``` that contains:
         * words present in the datasets
@@ -155,15 +164,3 @@ Description: ## Step 1 - generate list of needed words:
         in the selected output folder.
         
 Platform: any
-Classifier: Development Status :: 2 - Pre-Alpha
-Classifier: Environment :: Web Environment
-Classifier: Intended Audience :: Developers
-Classifier: Intended Audience :: Education
-Classifier: Intended Audience :: Science/Research
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Natural Language :: English
-Classifier: Operating System :: OS Independent
-Classifier: Programming Language :: Python :: 3.5
-Classifier: Programming Language :: Python :: 3.6
-Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
-Classifier: Topic :: Software Development :: Libraries :: Python Modules

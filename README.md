@@ -4,7 +4,7 @@
 ## Install
 Under the tfe directory:
 ```
-python3 setup.py develop
+python3 setup.py install
 ```
 
 ## Step 1 - generate list of needed words:
