@@ -1,3 +1,12 @@
+# ```tfe```: Thematic Fit Estimation utility
+
+
+## Install
+Under the tfe directory:
+```
+python3 setup.py develop
+```
+
 ## Step 1 - generate list of needed words:
 
 This step generates a file called ```needed_words.txt``` that contains:

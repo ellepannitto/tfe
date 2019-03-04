@@ -15,6 +15,7 @@ tfe/utils/config.py
 tfe/utils/data.py
 tfe/utils/files.py
 tfe/utils/immutables.py
+tfe/utils/parsing.py
 thematic_fit_estimation.egg-info/PKG-INFO
 thematic_fit_estimation.egg-info/SOURCES.txt
 thematic_fit_estimation.egg-info/dependency_links.txt
