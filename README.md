@@ -1,5 +1,24 @@
 # ```tfe```: Thematic Fit Estimation utility
 
+## Description
+This code refers to the experiment described in the paper ["Are Word Embeddings Really a Bad Fit for the Estimation of Thematic Fit?"](http://www.lrec-conf.org/proceedings/lrec2020/pdf/2020.lrec-1.700.pdf), published at LREC 2020.
+
+To cite the paper:
+```
+@InProceedings{chersoni-EtAl:2020:LREC,
+  author    = {Chersoni, Emmanuele  and  Pannitto, Ludovica  and  Santus, Enrico  and  Lenci, Alessandro  and  Huang, Chu-Ren},
+  title     = {Are Word Embeddings Really a Bad Fit for the Estimation of Thematic Fit?},
+  booktitle      = {Proceedings of The 12th Language Resources and Evaluation Conference},
+  month          = {May},
+  year           = {2020},
+  address        = {Marseille, France},
+  publisher      = {European Language Resources Association},
+  pages     = {5710--5715},
+  abstract  = {While neural embeddings represent a popular choice for word representation in a wide variety of NLP tasks, their usage for thematic fit modeling has been limited, as they have been reported to lag behind syntax-based count models. In this paper, we propose a complete evaluation of count models and word embeddings on thematic fit estimation, by taking into account a larger number of parameters and verb roles and introducing also dependency-based embeddings in the comparison. Our results show a complex scenario, where a determinant factor for the performance seems to be the availability to the model of reliable syntactic information for building the distributional representations of the roles.},
+  url       = {https://www.aclweb.org/anthology/2020.lrec-1.700}
+}
+
+```
 
 ## Install
 Under the ```tfe``` directory:
